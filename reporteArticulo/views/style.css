@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+:root {
+    --white: #f5f0f0;
+    --red: #f0233d;
+    --darkred: #b01721;
+    --grey: #212122;
+    --black: #121214;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+    background-color: var(--grey);
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+}
+
+header form {
+    width: 85%;
+    max-width: 600px;
+    padding: 40px;
+    margin: 0 auto;
+}
+
+#searchBar {
+    width: 100%;
+    height: 50px;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.buttons--container {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons--container button {
+    margin-left: 49px;
+    height: 50px;
+    font-size: 25px;
+    text-align: center;
+    box-shadow: 3px 4px 0px 0px #8a2a21;
+    background: linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+    background-color: #c62d1f;
+    border-radius: 18px;
+    border: 1px solid #d02718;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 17px;
+    padding: 7px 25px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #810e05;
+}
+
+.buttons--container button:hover {
+    background: linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
+    background-color: #f24437;
+}
+
+.buttons--container input {
+    height: 34px;
+    box-shadow: 3px 4px 0px 0px #8a2a21;
+    background: linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+    background-color: #c62d1f;
+    border-radius: 18px;
+    border: 1px solid #d02718;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 17px;
+    padding: 7px 25px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #810e05;
+}
+
+section {
+    background-color: var(--white);
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+#dataSheet--container {
+    position: absolute;
+    width: 450px;
+    height: 500px;
+    top: 224px;
+    background: #121214;
+}
+
+#dataSheet {
+    position: absolute;
+    width: 408px;
+    height: 376px;
+    left: 20px;
+    top: 30px;
+    background: #FFFFFF;
+}
+
+footer {
+    background-color: var(--black);
+    width: 100%;
+    height: 30%;
+}
