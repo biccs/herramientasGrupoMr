@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 8000;
+const port = 8080;
 
 //Adding the bodyParser middelware to the express app, for routing
 app.use(bodyParser.urlencoded({ extended: false }));
