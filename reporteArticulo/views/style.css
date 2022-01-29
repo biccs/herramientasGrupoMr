@@ -108,6 +108,15 @@ section {
     background: #FFFFFF;
 }
 
+#generalInfo--container {
+    margin: 0 auto;
+    font-size: .8rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
 footer {
     background-color: var(--black);
     width: 100%;

@@ -5,14 +5,7 @@ function manageDate(date) {
     var year = dateFormat.slice(0, 4);
     var month = dateFormat.slice(4, 6);
     var day = dateFormat.slice(6, 8);
-    console.log(date)
-    console.log(dateFormat);
-    console.log(year);
-    console.log(month);
-    console.log(day);
-    console.log(finalDate);
     finalDate = +day;
-    console.log(finalDate);
     switch (month) {
         case '01':
             finalDate += ' de Enero';
@@ -51,7 +44,6 @@ function manageDate(date) {
             finalDate += ' de Diciembre';
             break;
     }
-    console.log(finalDate);
     return finalDate;
 }
 
@@ -60,7 +52,6 @@ function manageDate(date) {
 function logic(data, startingDate, finalDate) {
     const items = [];
     const infoContainer = document.getElementById("generalInfo--container");
-    //const container = document.createElement("div");
 
     const title = document.createElement('h3');
     title.textContent = `Rendimiento del ${manageDate(startingDate)} al ${manageDate(finalDate)}`;
@@ -69,16 +60,13 @@ function logic(data, startingDate, finalDate) {
     const code = document.createElement('p');
     code.textContent = data.clave;
     const stock = document.createElement('p');
-    stock.textContent = data.inventario;
+    stock.textContent = data.inventario + ' en existencia';
     const dailySales = document.createElement('p');
-    dailySales.textContent = data.ventas_diarias;
+    dailySales.textContent = data.ventas_diarias + ' ventas diarias';
     const daysLeft = document.createElement('p');
-    daysLeft.textContent = data.dias_aproximados;
+    daysLeft.textContent = data.dias_aproximados + ' dias restantes';
 
     infoContainer.append(title, name, code, stock, dailySales, daysLeft);
-    //container.append(title, name, code, stock, dailySales, daysLeft);
-    //items.push(container);
-    //infoContainer.append(...items);
 }
 
 //Manages the conection with the API, retrieves data from a html form 
@@ -114,13 +102,22 @@ window.onload = function() {
         var auth = { "Authorization": `Basic ${credentials}` };
 
         var startingDate = document.getElementById("startingDate").value.replace(/-/g, '');
+        var startingDate2 = document.getElementById("startingDate").value;
         var finalDate = document.getElementById("finalDate").value.replace(/-/g, '');
+        var finalDate2 = document.getElementById("finalDate").value;
 
         //Creates a request for each day between the starting
         // and the final date
-        //TODO: RESOLVE ISSUE ABOUT MAKING QUERIES FOR EACH DAY
-        for (let i = startingDate; i <= finalDate; i++) {
-            getData(auth, i, finalDate);
-        }
+        var start = new Date(startingDate2);
+        var end = new Date(finalDate2);
+        //Rendimiento de todo el periodo
+        getData(auth, startingDate, finalDate);
+        // for (var d = new Date(startingDate2); d <= end; d.setDate(d.getDate() + 1)) {
+        //     var dateStart = d.toISOString().substring(0, 10);
+        //     var dateEnd = end.toISOString().substring(0, 10);
+        //     console.log(dateStart);
+
+        //     getData(auth, dateStart.replace(/-/g, ''), dateEnd.replace(/-/g, ''));
+        // }
     });
 }
