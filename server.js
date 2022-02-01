@@ -13,5 +13,5 @@ app.use('/', require('./routes'));
 app.use(express.static(__dirname + '/reporteArticulo/views/'));
 
 app.listen(port, () => {
-    console.log(`Hello World on port: ${port}`)
+    console.log(`-  Server Listening on port: ${port} --`)
 })

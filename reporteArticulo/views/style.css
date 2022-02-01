@@ -101,6 +101,8 @@ section {
 
 #dataSheet {
     position: absolute;
+    overflow-x: hidden;
+    overflow-y: auto;
     width: 408px;
     height: 376px;
     left: 20px;

@@ -47,10 +47,7 @@ function manageDate(date) {
     return finalDate;
 }
 
-//Manages the response from the API, and reestructures the DOM with
-// native object manipulation
-function logic(data, startingDate, finalDate) {
-    const items = [];
+function generalDataModel(data, startingDate, finalDate) {
     const infoContainer = document.getElementById("generalInfo--container");
 
     const title = document.createElement('h3');
@@ -69,6 +66,16 @@ function logic(data, startingDate, finalDate) {
     infoContainer.append(title, name, code, stock, dailySales, daysLeft);
 }
 
+//Reestructures the DOM with native object manipulation
+// and displays a button representing a month
+function displayButton(date) {
+    const infoContainer = document.getElementById("periodInfo");
+    const button = document.createElement('button');
+    button.textContent = date;
+
+    infoContainer.append(button)
+}
+
 //Manages the conection with the API, retrieves data from a html form 
 // for the query parameters, and redirects the html response in json format
 // for processing data through the logic() function
@@ -83,7 +90,7 @@ function getData(auth, startingDate, finalDate) {
     fetch(url, { headers: auth })
         .then((respuesta) => respuesta.json())
         .then((data) => {
-            logic(data, startingDate, finalDate)
+            generalDataModel(data, startingDate, finalDate)
         }).catch(function(err) {
             // There was an error
             console.warn('Something went wrong.', err);
@@ -110,14 +117,41 @@ window.onload = function() {
         // and the final date
         var start = new Date(startingDate2);
         var end = new Date(finalDate2);
-        //Rendimiento de todo el periodo
-        getData(auth, startingDate, finalDate);
-        // for (var d = new Date(startingDate2); d <= end; d.setDate(d.getDate() + 1)) {
-        //     var dateStart = d.toISOString().substring(0, 10);
-        //     var dateEnd = end.toISOString().substring(0, 10);
-        //     console.log(dateStart);
 
-        //     getData(auth, dateStart.replace(/-/g, ''), dateEnd.replace(/-/g, ''));
+        //Performance whitin a given period of time
+        getData(auth, startingDate, finalDate);
+
+        //Creates the buttons to display the summary of 
+        // performance of the month within the given
+        // period of time
+        var start = startingDate2
+        var end = finalDate2
+        var startYear = parseInt(start.substring(0, 4));
+        var endYear = parseInt(end.substring(0, 4));
+        var dates = [];
+        console.log(start);
+        console.log(end);
+        console.log(startYear);
+        console.log(endYear);
+
+        for (var i = startYear; i <= endYear; i++) {
+            var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
+            var startMon = i === startYear ? parseInt(start[1]) - 1 : 0;
+            for (var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j + 1) {
+                var month = j + 1;
+                var displayMonth = month < 10 ? '0' + month : month;
+                dates.push([i, displayMonth, '01'].join('-'));
+            }
+        }
+        console.log(dates);
+
+        // var startDate = moment(startingDate2);
+        // var endDate = moment(finalDate2);
+        // while (startDate.isBefore(endDate)) {
+        //     displayButton(startDate);
+        //     print(startDate);
+        //     startDate.add(1, 'month');
         // }
+
     });
 }
