@@ -47,6 +47,7 @@ function manageDate(date) {
     return finalDate;
 }
 
+//Displays the component for the general performance of the article
 function generalDataModel(data, startingDate, finalDate) {
     const infoContainer = document.getElementById("generalInfo--container");
 
@@ -66,12 +67,20 @@ function generalDataModel(data, startingDate, finalDate) {
     infoContainer.append(title, name, code, stock, dailySales, daysLeft);
 }
 
+//Displays the component for the monthly performance
+// showing the weekly and daily performance of 
+// the period
+function displayMonthComponent() {
+
+}
+
 //Reestructures the DOM with native object manipulation
-// and displays a button representing a month
+// and displays a button representing to display the 
+// general performance of a month
 function displayButton(date) {
     const infoContainer = document.getElementById("periodInfo");
+
     for (let i = 0; i < date.length - 1; i++) {
-        console.log(date);
         const button = document.createElement('button');
         button.textContent = date[i];
         button.className = "monthButton";
@@ -83,12 +92,14 @@ function displayButton(date) {
             var password = '?bW86hmTDC`)9w*('
             var credentials = btoa(`${user}:${password}`)
             var auth = { "Authorization": `Basic ${credentials}` };
+
             //Generates the url for the API query
             //Name or Code bar Input
             var searchData = document.getElementById("searchBar").value;
             var startingDate = date[i].replace(/-/g, '');
             var finalDate = date[i + 1].replace(/-/g, '');
             const url = `http://127.0.0.1:8000/matriz/reporte/articulos/?clave=${searchData}&fecha_inicial=${startingDate}&fecha_final=${finalDate}`;
+
             //Prevents form from reloading page on submit
             event.preventDefault();
             //Sending Fetch Request (GET)
@@ -96,10 +107,31 @@ function displayButton(date) {
                 .then((respuesta) => respuesta.json())
                 .then((data) => {
                     console.log(data);
+                    console.log('----------------------------------');
                 }).catch(function(err) {
                     // There was an error
                     console.warn('Something went wrong.', err);
                 });
+
+            //The following code iterates through the current month and
+            //makes a query for each day
+            for (let i = parseInt(startingDate.substring(6, 8)); i < 31; i++) {
+                if (i < 10) {
+                    var sd = `${startingDate.substring(0,6)}0${i}`
+
+                } else {
+                    var sd = `${startingDate.substring(0,6)}${i}`;
+                }
+                const url = `http://127.0.0.1:8000/matriz/reporte/ventas_diarias/?clave=${searchData}&fecha=${sd}`;
+                fetch(url, { headers: auth })
+                    .then((respuesta) => respuesta.json())
+                    .then((data) => {
+                        console.log(data);
+                    }).catch(function(err) {
+                        // There was an error
+                        console.warn('Something went wrong.', err);
+                    });
+            }
         });
         infoContainer.append(button)
     }
