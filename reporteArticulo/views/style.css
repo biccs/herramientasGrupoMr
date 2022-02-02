@@ -111,12 +111,44 @@ section {
 }
 
 #generalInfo--container {
-    margin: 0 auto;
     font-size: .8rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    height: auto;
+}
+
+#periodInfo {
+    width: 80%;
+    text-align: center;
+    font-size: .8rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.monthButton {
+    height: 34px;
+    box-shadow: 3px 4px 0px 0px #8a2a21;
+    background: linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+    background-color: #c62d1f;
+    border-radius: 18px;
+    border: 1px solid #d02718;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 17px;
+    padding: 7px 25px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #810e05;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.monthButton:hover {
+    background: linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
+    background-color: #f24437;
 }
 
 footer {

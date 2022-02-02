@@ -70,10 +70,12 @@ function generalDataModel(data, startingDate, finalDate) {
 // and displays a button representing a month
 function displayButton(date) {
     const infoContainer = document.getElementById("periodInfo");
-    const button = document.createElement('button');
-    button.textContent = date;
-
-    infoContainer.append(button)
+    for (let i = 0; i < date.length; i++) {
+        const button = document.createElement('button');
+        button.textContent = date[i];
+        button.className = "monthButton";
+        infoContainer.append(button)
+    }
 }
 
 //Manages the conection with the API, retrieves data from a html form 
@@ -129,29 +131,16 @@ window.onload = function() {
         var startYear = parseInt(start.substring(0, 4));
         var endYear = parseInt(end.substring(0, 4));
         var dates = [];
-        console.log(start);
-        console.log(end);
-        console.log(startYear);
-        console.log(endYear);
 
         for (var i = startYear; i <= endYear; i++) {
-            var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
-            var startMon = i === startYear ? parseInt(start[1]) - 1 : 0;
+            var endMonth = i != endYear ? 11 : (parseInt(end.substring(5, 7)) - 1);
+            var startMon = i === startYear ? (parseInt(start.substring(5, 7)) - 1) : 0;
             for (var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j + 1) {
                 var month = j + 1;
                 var displayMonth = month < 10 ? '0' + month : month;
                 dates.push([i, displayMonth, '01'].join('-'));
             }
         }
-        console.log(dates);
-
-        // var startDate = moment(startingDate2);
-        // var endDate = moment(finalDate2);
-        // while (startDate.isBefore(endDate)) {
-        //     displayButton(startDate);
-        //     print(startDate);
-        //     startDate.add(1, 'month');
-        // }
-
+        displayButton(dates);
     });
 }
