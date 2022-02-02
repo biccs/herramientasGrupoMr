@@ -70,10 +70,37 @@ function generalDataModel(data, startingDate, finalDate) {
 // and displays a button representing a month
 function displayButton(date) {
     const infoContainer = document.getElementById("periodInfo");
-    for (let i = 0; i < date.length; i++) {
+    for (let i = 0; i < date.length - 1; i++) {
+        console.log(date);
         const button = document.createElement('button');
         button.textContent = date[i];
         button.className = "monthButton";
+
+        //Adds an event to the button for calling total sales
+        // on certain month
+        button.addEventListener('click', () => {
+            var user = 'mrvapes';
+            var password = '?bW86hmTDC`)9w*('
+            var credentials = btoa(`${user}:${password}`)
+            var auth = { "Authorization": `Basic ${credentials}` };
+            //Generates the url for the API query
+            //Name or Code bar Input
+            var searchData = document.getElementById("searchBar").value;
+            var startingDate = date[i].replace(/-/g, '');
+            var finalDate = date[i + 1].replace(/-/g, '');
+            const url = `http://127.0.0.1:8000/matriz/reporte/articulos/?clave=${searchData}&fecha_inicial=${startingDate}&fecha_final=${finalDate}`;
+            //Prevents form from reloading page on submit
+            event.preventDefault();
+            //Sending Fetch Request (GET)
+            fetch(url, { headers: auth })
+                .then((respuesta) => respuesta.json())
+                .then((data) => {
+                    console.log(data);
+                }).catch(function(err) {
+                    // There was an error
+                    console.warn('Something went wrong.', err);
+                });
+        });
         infoContainer.append(button)
     }
 }
@@ -133,7 +160,7 @@ window.onload = function() {
         var dates = [];
 
         for (var i = startYear; i <= endYear; i++) {
-            var endMonth = i != endYear ? 11 : (parseInt(end.substring(5, 7)) - 1);
+            var endMonth = i != endYear ? 11 : (parseInt(end.substring(5, 7)));
             var startMon = i === startYear ? (parseInt(start.substring(5, 7)) - 1) : 0;
             for (var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j + 1) {
                 var month = j + 1;
