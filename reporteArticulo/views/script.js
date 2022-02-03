@@ -68,19 +68,21 @@ function generalDataModel(data, startingDate, finalDate) {
 }
 
 //Displays the component for the monthly performance
-// showing the weekly and daily performance of 
+// showing the weekly and daily performance of
 // the period
 function displayMonthComponent() {
 
 }
 
 //Reestructures the DOM with native object manipulation
-// and displays a button representing to display the 
+// and displays a button representing to display the
 // general performance of a month
 function displayButton(date) {
     const infoContainer = document.getElementById("periodInfo");
 
     for (let i = 0; i < date.length - 1; i++) {
+        let dailyData = [];
+
         const button = document.createElement('button');
         button.textContent = date[i];
         button.className = "monthButton";
@@ -106,8 +108,8 @@ function displayButton(date) {
             fetch(url, { headers: auth })
                 .then((respuesta) => respuesta.json())
                 .then((data) => {
+                    console.log('General Data');
                     console.log(data);
-                    console.log('----------------------------------');
                 }).catch(function(err) {
                     // There was an error
                     console.warn('Something went wrong.', err);
@@ -126,18 +128,24 @@ function displayButton(date) {
                 fetch(url, { headers: auth })
                     .then((respuesta) => respuesta.json())
                     .then((data) => {
-                        console.log(data);
+                        dailyData.push(data);
+                        console.log('-- Daily Data --');
+                        console.log(url);
+                        console.log(dailyData);
+
                     }).catch(function(err) {
                         // There was an error
                         console.warn('Something went wrong.', err);
                     });
             }
+            console.log('-- ALL DAYS OF PERIOD --');
+            // console.log(dailyData);
         });
-        infoContainer.append(button)
+        infoContainer.append(button);
     }
 }
 
-//Manages the conection with the API, retrieves data from a html form 
+//Manages the conection with the API, retrieves data from a html form
 // for the query parameters, and redirects the html response in json format
 // for processing data through the logic() function
 function getData(auth, startingDate, finalDate) {
@@ -182,7 +190,7 @@ window.onload = function() {
         //Performance whitin a given period of time
         getData(auth, startingDate, finalDate);
 
-        //Creates the buttons to display the summary of 
+        //Creates the buttons to display the summary of
         // performance of the month within the given
         // period of time
         var start = startingDate2
