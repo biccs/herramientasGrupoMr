@@ -70,9 +70,10 @@ function generalDataModel(data, startingDate, finalDate) {
 //Displays the component for the monthly performance
 // showing the weekly and daily performance of
 // the period
+// TODO: FINISH DISPLAYING API RESPONSE
 function displayMonthComponent(dailyData, generalData, containerId) {
     console.log(generalData);
-    console.log(containerId);
+    console.log(generalData.ventas_diarias);
     const container = document.getElementById(containerId);
 
     const generalTitle = document.createElement("h2");
@@ -190,6 +191,7 @@ function displayMonthComponent(dailyData, generalData, containerId) {
 //Reestructures the DOM with native object manipulation
 // and displays a button representing to display the
 // general performance of a month
+//TODO: FIX ASYNCHRONOUS FUNCTION, I HAVE TO WAIT FOR THE FUNCTION TO WORK
 function displayButton(date) {
 
     const infoContainer = document.getElementById("periodInfo");
