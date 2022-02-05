@@ -71,15 +71,9 @@ function generalDataModel(data, startingDate, finalDate) {
 // showing the weekly and daily performance of
 // the period
 // TODO: FINISH DISPLAYING API RESPONSE
-function displayMonthComponent(dailyData, generalData, containerId) {
-    console.log(generalData);
-    console.log(generalData.ventas_diarias);
+function displayMonthComponent(dailyData, containerId) {
     const container = document.getElementById(containerId);
 
-    const generalTitle = document.createElement("h2");
-    generalTitle.textContent = 'General';
-    const ventasDiarias = document.createTextNode(generalData.ventas_diarias);
-    const diasRestantes = document.createTextNode(generalData.dias_aproximados);
     const dailyTitle = document.createElement("h2");
     dailyTitle.textContent = 'Resumen Diario/Semanal';
 
@@ -185,7 +179,26 @@ function displayMonthComponent(dailyData, generalData, containerId) {
 
     }
     calendarContainer.append(weekContainer, weekContainer2, weekContainer3, weekContainer4, weekContainer5);
-    container.append(generalTitle, ventasDiarias, diasRestantes, dailyTitle, calendarContainer);
+    container.append(dailyTitle, calendarContainer);
+}
+
+//Displays the component for the monthly performance
+// summary displaying sales/day and days left
+// TODO: FINISH DISPLAYING API RESPONSE
+function displayMonthSummaryComponent(generalData, containerId) {
+    const container = document.getElementById(containerId);
+    const summaryContainer = document.createElement('div');
+    summaryContainer.className = 'summary--container';
+
+    const generalTitle = document.createElement("h2");
+    generalTitle.textContent = 'General';
+    const ventasDiarias = document.createElement("p");
+    ventasDiarias.textContent = `${generalData.ventas_diarias} ventas/dia`;
+    const diasRestantes = document.createElement("p");
+    diasRestantes.textContent = `${generalData.dias_aproximados} dias restantes`;
+
+    summaryContainer.append(generalTitle, ventasDiarias, diasRestantes);
+    container.append(summaryContainer);
 }
 
 //Reestructures the DOM with native object manipulation
@@ -213,7 +226,6 @@ function displayButton(date) {
             var auth = { "Authorization": `Basic ${credentials}` };
 
             const dailyData = [];
-            const generalData = [];
             var searchData = document.getElementById("searchBar").value;
             var startingDate = date[i].replace(/-/g, '');
             var finalDate = date[i + 1].replace(/-/g, '');
@@ -225,7 +237,7 @@ function displayButton(date) {
             fetch(url, { headers: auth })
                 .then((respuesta) => respuesta.json())
                 .then((data) => {
-                    generalData.push(data);
+                    displayMonthSummaryComponent(data, containerId);
                 }).catch(function(err) {
                     // There was an error
                     console.warn('Something went wrong.', err);
@@ -250,7 +262,7 @@ function displayButton(date) {
                         console.warn('Something went wrong.', err);
                     });
             }
-            displayMonthComponent(dailyData, generalData, containerId);
+            displayMonthComponent(dailyData, containerId);
         });
         container.append(button);
         infoContainer.append(container);
