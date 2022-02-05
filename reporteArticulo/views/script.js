@@ -70,8 +70,9 @@ function generalDataModel(data, startingDate, finalDate) {
 //Displays the component for the monthly performance
 // showing the weekly and daily performance of
 // the period
-// TODO: FINISH DISPLAYING API RESPONSE
+// TODO: FIX DAILY SALES, WRONG DATA DISPLAYED
 function displayMonthComponent(dailyData, containerId) {
+    console.log(dailyData);
     const container = document.getElementById(containerId);
 
     const dailyTitle = document.createElement("h2");
@@ -87,16 +88,20 @@ function displayMonthComponent(dailyData, containerId) {
 
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
-            const day = document.createTextNode(`${i + 1}`);
-            const sales = document.createTextNode(dailyData[0].ventas_diarias);
+            const day = document.createElement("p");
+            day.textContent = `${i + 1}`;
+            const sales = document.createElement("p");
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
             dayContainer.append(day, sales);
             weekContainer.append(dayContainer);
         }
         if (i > 0 && i < 6) {
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
-            const day = document.createTextNode(`${i + 1}`);
-            const sales = document.createTextNode(dailyData[0].ventas_diarias);
+            const day = document.createElement("p");
+            day.textContent = `${i + 1}`;
+            const sales = document.createElement("p");
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
             dayContainer.append(day, sales);
             weekContainer.append(dayContainer);
         }
@@ -106,16 +111,20 @@ function displayMonthComponent(dailyData, containerId) {
 
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
-            const day = document.createTextNode(`${i + 1}`);
-            const sales = document.createTextNode(dailyData[0].ventas_diarias);
+            const day = document.createElement("p");
+            day.textContent = `${i + 1}`;
+            const sales = document.createElement("p");
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
             dayContainer.append(day, sales);
             weekContainer2.append(dayContainer);
         }
         if (i > 6 && i < 12) {
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
-            const day = document.createTextNode(`${i + 1}`);
-            const sales = document.createTextNode(dailyData[0].ventas_diarias);
+            const day = document.createElement("p");
+            day.textContent = `${i + 1}`;
+            const sales = document.createElement("p");
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
             dayContainer.append(day, sales);
             weekContainer2.append(dayContainer);
         }
@@ -125,16 +134,20 @@ function displayMonthComponent(dailyData, containerId) {
 
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
-            const day = document.createTextNode(`${i + 1}`);
-            const sales = document.createTextNode(dailyData[0].ventas_diarias);
+            const day = document.createElement("p");
+            day.textContent = `${i + 1}`;
+            const sales = document.createElement("p");
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
             dayContainer.append(day, sales);
             weekContainer3.append(dayContainer);
         }
         if (i > 12 && i < 18) {
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
-            const day = document.createTextNode(`${i + 1}`);
-            const sales = document.createTextNode(dailyData[0].ventas_diarias);
+            const day = document.createElement("p");
+            day.textContent = `${i + 1}`;
+            const sales = document.createElement("p");
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
             dayContainer.append(day, sales);
             weekContainer3.append(dayContainer);
         }
@@ -144,16 +157,20 @@ function displayMonthComponent(dailyData, containerId) {
 
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
-            const day = document.createTextNode(`${i + 1}`);
-            const sales = document.createTextNode(dailyData[0].ventas_diarias);
+            const day = document.createElement("p");
+            day.textContent = `${i + 1}`;
+            const sales = document.createElement("p");
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
             dayContainer.append(day, sales);
             weekContainer4.append(dayContainer);
         }
         if (i > 18 && i < 24) {
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
-            const day = document.createTextNode(`${i + 1}`);
-            const sales = document.createTextNode(dailyData[0].ventas_diarias);
+            const day = document.createElement("p");
+            day.textContent = `${i + 1}`;
+            const sales = document.createElement("p");
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
             dayContainer.append(day, sales);
             weekContainer4.append(dayContainer);
         }
@@ -163,16 +180,20 @@ function displayMonthComponent(dailyData, containerId) {
 
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
-            const day = document.createTextNode(`${i + 1}`);
-            const sales = document.createTextNode(dailyData[0].ventas_diarias);
+            const day = document.createElement("p");
+            day.textContent = `${i + 1}`;
+            const sales = document.createElement("p");
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
             dayContainer.append(day, sales);
             weekContainer5.append(dayContainer);
         }
         if (i > 24 && i < 30) {
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
-            const day = document.createTextNode(`${i + 1}`);
-            const sales = document.createTextNode(dailyData[0].ventas_diarias);
+            const day = document.createElement("p");
+            day.textContent = `${i + 1}`;
+            const sales = document.createElement("p");
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
             dayContainer.append(day, sales);
             weekContainer5.append(dayContainer);
         }
@@ -262,7 +283,8 @@ function displayButton(date) {
                         console.warn('Something went wrong.', err);
                     });
             }
-            displayMonthComponent(dailyData, containerId);
+            //WAIT BEEFORE DISPLAYING 
+            setTimeout(displayMonthComponent, 7000, dailyData, containerId);
         });
         container.append(button);
         infoContainer.append(container);
