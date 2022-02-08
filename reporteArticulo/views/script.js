@@ -70,10 +70,10 @@ function generalDataModel(data, startingDate, finalDate) {
 //Displays the component for the monthly performance
 // showing the weekly and daily performance of
 // the period
-// TODO: FIX DAILY SALES, WRONG DATA DISPLAYED
-function displayMonthComponent(dailyData, containerId) {
-    console.log(dailyData);
-    const container = document.getElementById(containerId);
+function displayMonthComponent(dailyData, containerId, toggleId) {
+
+    const toggle = document.getElementById(toggleId);
+    // const container = document.getElementById(containerId);
 
     const dailyTitle = document.createElement("h2");
     dailyTitle.textContent = 'Resumen Diario/Semanal';
@@ -200,14 +200,15 @@ function displayMonthComponent(dailyData, containerId) {
 
     }
     calendarContainer.append(weekContainer, weekContainer2, weekContainer3, weekContainer4, weekContainer5);
-    container.append(dailyTitle, calendarContainer);
+    toggle.append(dailyTitle, calendarContainer)
+        // container.append(dailyTitle, calendarContainer);
 }
 
 //Displays the component for the monthly performance
 // summary displaying sales/day and days left
-// TODO: FINISH DISPLAYING API RESPONSE
-function displayMonthSummaryComponent(generalData, containerId) {
-    const container = document.getElementById(containerId);
+function displayMonthSummaryComponent(generalData, containerId, toggleId) {
+    const toggle = document.getElementById(toggleId);
+    // const container = document.getElementById(containerId);
     const summaryContainer = document.createElement('div');
     summaryContainer.className = 'summary--container';
 
@@ -219,13 +220,14 @@ function displayMonthSummaryComponent(generalData, containerId) {
     diasRestantes.textContent = `${generalData.dias_aproximados} dias restantes`;
 
     summaryContainer.append(generalTitle, ventasDiarias, diasRestantes);
-    container.append(summaryContainer);
+    toggle.append(summaryContainer);
+    // container.append(toggle);
+
 }
 
 //Reestructures the DOM with native object manipulation
 // and displays a button representing to display the
 // general performance of a month
-//TODO: FIX ASYNCHRONOUS FUNCTION, I HAVE TO WAIT FOR THE FUNCTION TO WORK
 function displayButton(date) {
 
     const infoContainer = document.getElementById("periodInfo");
@@ -238,56 +240,70 @@ function displayButton(date) {
         const button = document.createElement('button');
         button.textContent = date[i];
         button.className = "monthButton";
+        const toggleContainer = document.createElement('div');
+        toggleContainer.id = `toggle--container${i}`;
+        let toggleId = toggleContainer.id;
 
+        let value = false;
         //Adds an event to the button for calling total sales
         // on certain month
         button.addEventListener('click', () => {
-            var user = 'mrvapes';
-            var password = '?bW86hmTDC`)9w*('
-            var credentials = btoa(`${user}:${password}`)
-            var auth = { "Authorization": `Basic ${credentials}` };
+            const toggle = document.getElementById(`toggle--container${i}`);
+            if (value) {
+                toggle.style.display = "none";
+                value = false;
+            } else {
+                toggle.style.display = "inline";
+                value = true;
+            }
+            if (toggle) {
+                var user = 'mrvapes';
+                var password = '?bW86hmTDC`)9w*('
+                var credentials = btoa(`${user}:${password}`)
+                var auth = { "Authorization": `Basic ${credentials}` };
 
-            const dailyData = [];
-            var searchData = document.getElementById("searchBar").value;
-            var startingDate = date[i].replace(/-/g, '');
-            var finalDate = date[i + 1].replace(/-/g, '');
-            const url = `http://127.0.0.1:8000/matriz/reporte/articulos/?clave=${searchData}&fecha_inicial=${startingDate}&fecha_final=${finalDate}`;
+                const dailyData = [];
+                var searchData = document.getElementById("searchBar").value;
+                var startingDate = date[i].replace(/-/g, '');
+                var finalDate = date[i + 1].replace(/-/g, '');
+                const url = `http://127.0.0.1:8000/matriz/reporte/articulos/?clave=${searchData}&fecha_inicial=${startingDate}&fecha_final=${finalDate}`;
 
-            //Prevents form from reloading page on submit
-            event.preventDefault();
-            //Sending Fetch Request (GET)
-            fetch(url, { headers: auth })
-                .then((respuesta) => respuesta.json())
-                .then((data) => {
-                    displayMonthSummaryComponent(data, containerId);
-                }).catch(function(err) {
-                    // There was an error
-                    console.warn('Something went wrong.', err);
-                });
-
-            //The following code iterates through the current month and
-            //makes a query for each day
-            for (let i = parseInt(startingDate.substring(6, 8)); i < 31; i++) {
-                if (i < 10) {
-                    var sd = `${startingDate.substring(0,6)}0${i}`
-
-                } else {
-                    var sd = `${startingDate.substring(0,6)}${i}`;
-                }
-                const url = `http://127.0.0.1:8000/matriz/reporte/ventas_diarias/?clave=${searchData}&fecha=${sd}`;
+                //Prevents form from reloading page on submit
+                event.preventDefault();
+                //Sending Fetch Request (GET)
                 fetch(url, { headers: auth })
                     .then((respuesta) => respuesta.json())
                     .then((data) => {
-                        dailyData.push(data);
+                        displayMonthSummaryComponent(data, containerId, toggleId);
                     }).catch(function(err) {
                         // There was an error
                         console.warn('Something went wrong.', err);
                     });
+
+                //The following code iterates through the current month and
+                //makes a query for each day
+                for (let i = parseInt(startingDate.substring(6, 8)); i < 31; i++) {
+                    if (i < 10) {
+                        var sd = `${startingDate.substring(0,6)}0${i}`
+
+                    } else {
+                        var sd = `${startingDate.substring(0,6)}${i}`;
+                    }
+                    const url = `http://127.0.0.1:8000/matriz/reporte/ventas_diarias/?clave=${searchData}&fecha=${sd}`;
+                    fetch(url, { headers: auth })
+                        .then((respuesta) => respuesta.json())
+                        .then((data) => {
+                            dailyData.push(data);
+                        }).catch(function(err) {
+                            // There was an error
+                            console.warn('Something went wrong.', err);
+                        });
+                }
+                //WAIT BEEFORE DISPLAYING
+                setTimeout(displayMonthComponent, 7000, dailyData, containerId, toggleId);
             }
-            //WAIT BEEFORE DISPLAYING 
-            setTimeout(displayMonthComponent, 7000, dailyData, containerId);
         });
-        container.append(button);
+        container.append(button, toggleContainer);
         infoContainer.append(container);
     }
 }
