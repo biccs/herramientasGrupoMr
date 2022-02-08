@@ -91,7 +91,7 @@ function displayMonthComponent(dailyData, containerId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
             dayContainer.append(day, sales);
             weekContainer.append(dayContainer);
         }
@@ -101,7 +101,7 @@ function displayMonthComponent(dailyData, containerId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
             dayContainer.append(day, sales);
             weekContainer.append(dayContainer);
         }
@@ -114,7 +114,7 @@ function displayMonthComponent(dailyData, containerId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
             dayContainer.append(day, sales);
             weekContainer2.append(dayContainer);
         }
@@ -124,7 +124,7 @@ function displayMonthComponent(dailyData, containerId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
             dayContainer.append(day, sales);
             weekContainer2.append(dayContainer);
         }
@@ -137,7 +137,7 @@ function displayMonthComponent(dailyData, containerId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
             dayContainer.append(day, sales);
             weekContainer3.append(dayContainer);
         }
@@ -147,7 +147,7 @@ function displayMonthComponent(dailyData, containerId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
             dayContainer.append(day, sales);
             weekContainer3.append(dayContainer);
         }
@@ -160,7 +160,7 @@ function displayMonthComponent(dailyData, containerId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
             dayContainer.append(day, sales);
             weekContainer4.append(dayContainer);
         }
@@ -170,7 +170,7 @@ function displayMonthComponent(dailyData, containerId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
             dayContainer.append(day, sales);
             weekContainer4.append(dayContainer);
         }
@@ -183,7 +183,7 @@ function displayMonthComponent(dailyData, containerId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
             dayContainer.append(day, sales);
             weekContainer5.append(dayContainer);
         }
@@ -193,7 +193,7 @@ function displayMonthComponent(dailyData, containerId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas/dia`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
             dayContainer.append(day, sales);
             weekContainer5.append(dayContainer);
         }
@@ -233,6 +233,7 @@ function displayButton(date) {
     for (let i = 0; i < date.length - 1; i++) {
         const container = document.createElement('div');
         container.id = `period-data--container${i}`;
+        container.className = "period-data--container";
         let containerId = container.id;
         const button = document.createElement('button');
         button.textContent = date[i];
