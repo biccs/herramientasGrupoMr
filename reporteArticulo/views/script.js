@@ -240,23 +240,22 @@ function displayButton(date) {
         const button = document.createElement('button');
         button.textContent = date[i];
         button.className = "monthButton";
-        const toggleContainer = document.createElement('div');
-        toggleContainer.id = `toggle--container${i}`;
-        let toggleId = toggleContainer.id;
+        // const toggleContainer = document.createElement('div');
+        // toggleContainer.id = `toggle--container${i}`;
+        // let toggleId = toggleContainer.id;
 
         let value = false;
         //Adds an event to the button for calling total sales
         // on certain month
         button.addEventListener('click', () => {
             const toggle = document.getElementById(`toggle--container${i}`);
-            if (value) {
-                toggle.style.display = "none";
-                value = false;
-            } else {
-                toggle.style.display = "inline";
-                value = true;
-            }
-            if (toggle) {
+
+            if (!toggle) {
+                const toggleContainer = document.createElement('div');
+                toggleContainer.id = `toggle--container${i}`;
+                let toggleId = toggleContainer.id;
+                container.append(toggleContainer);
+
                 var user = 'mrvapes';
                 var password = '?bW86hmTDC`)9w*('
                 var credentials = btoa(`${user}:${password}`)
@@ -302,8 +301,17 @@ function displayButton(date) {
                 //WAIT BEEFORE DISPLAYING
                 setTimeout(displayMonthComponent, 7000, dailyData, containerId, toggleId);
             }
+
+            //Logic for button to toggle info on click
+            if (value) {
+                toggle.style.display = "none";
+                value = false;
+            } else {
+                toggle.style.display = "inline";
+                value = true;
+            }
         });
-        container.append(button, toggleContainer);
+        container.append(button);
         infoContainer.append(container);
     }
 }
