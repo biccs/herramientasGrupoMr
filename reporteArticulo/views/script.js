@@ -253,6 +253,7 @@ function displayButton(date) {
             if (!toggle) {
                 const toggleContainer = document.createElement('div');
                 toggleContainer.id = `toggle--container${i}`;
+                toggleContainer.className = "toggle--container";
                 let toggleId = toggleContainer.id;
                 container.append(toggleContainer);
 
@@ -307,7 +308,7 @@ function displayButton(date) {
                 toggle.style.display = "none";
                 value = false;
             } else {
-                toggle.style.display = "inline";
+                toggle.style.display = "block";
                 value = true;
             }
         });
