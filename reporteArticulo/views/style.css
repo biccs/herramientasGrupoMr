@@ -111,6 +111,7 @@ section {
     top: 30px;
     background: #FFFFFF;
     border-radius: 5px;
+    height: 442px;
 }
 
 #generalInfo--container {
@@ -126,6 +127,21 @@ section {
     width: 90%;
     text-align: center;
     font-size: .8rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    /* IE and Edge */
+    -ms-overflow-style: none;
+    /* Firefox */
+    scrollbar-width: none;
+}
+
+#periodInfo::-webkit-scrollbar {
+    display: none;
+}
+
+#period--container {
     display: flex;
     flex-direction: column;
     margin: 0 auto;

@@ -82,6 +82,14 @@ function displayMonthComponent(dailyData, toggleId) {
     const calendarContainer = document.createElement('div');
     calendarContainer.className = 'calendar--container';
 
+    var highestDay = 0;
+    for (let i = 0; i < dailyData.length; i++) {
+        if (dailyData[i].ventas_diarias > highestDay) {
+            highestDay = dailyData[i].ventas_diarias;
+        }
+    }
+
+
     for (let i = 0; i < dailyData.length; i++) {
         if (i == 0) {
             var weekContainer = document.createElement('div');
@@ -89,6 +97,7 @@ function displayMonthComponent(dailyData, toggleId) {
 
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
+            dayContainer.style.backgroundColor = colorDay(dailyData[i].ventas_diarias, highestDay);
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
@@ -100,6 +109,7 @@ function displayMonthComponent(dailyData, toggleId) {
         if (i > 0 && i < 6) {
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
+            dayContainer.style.backgroundColor = colorDay(dailyData[i].ventas_diarias, highestDay);
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
@@ -114,6 +124,7 @@ function displayMonthComponent(dailyData, toggleId) {
 
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
+            dayContainer.style.backgroundColor = colorDay(dailyData[i].ventas_diarias, highestDay);
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
@@ -125,6 +136,7 @@ function displayMonthComponent(dailyData, toggleId) {
         if (i > 6 && i < 12) {
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
+            dayContainer.style.backgroundColor = colorDay(dailyData[i].ventas_diarias, highestDay);
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
@@ -139,6 +151,7 @@ function displayMonthComponent(dailyData, toggleId) {
 
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
+            dayContainer.style.backgroundColor = colorDay(dailyData[i].ventas_diarias, highestDay);
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
@@ -150,6 +163,7 @@ function displayMonthComponent(dailyData, toggleId) {
         if (i > 12 && i < 18) {
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
+            dayContainer.style.backgroundColor = colorDay(dailyData[i].ventas_diarias, highestDay);
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
@@ -164,6 +178,7 @@ function displayMonthComponent(dailyData, toggleId) {
 
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
+            dayContainer.style.backgroundColor = colorDay(dailyData[i].ventas_diarias, highestDay);
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
@@ -175,6 +190,7 @@ function displayMonthComponent(dailyData, toggleId) {
         if (i > 18 && i < 24) {
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
+            dayContainer.style.backgroundColor = colorDay(dailyData[i].ventas_diarias, highestDay);
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
@@ -189,6 +205,7 @@ function displayMonthComponent(dailyData, toggleId) {
 
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
+            dayContainer.style.backgroundColor = colorDay(dailyData[i].ventas_diarias, highestDay);
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
@@ -200,6 +217,7 @@ function displayMonthComponent(dailyData, toggleId) {
         if (i > 24 && i < 30) {
             const dayContainer = document.createElement('div');
             dayContainer.className = 'calendar-days--container';
+            dayContainer.style.backgroundColor = colorDay(dailyData[i].ventas_diarias, highestDay);
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
@@ -209,6 +227,36 @@ function displayMonthComponent(dailyData, toggleId) {
             calendarContainer.append(weekContainer5);
         }
         toggle.append(dailyTitle, calendarContainer);
+    }
+}
+
+//Relevant in the following context: establishing backgroung color
+// for the calendar-days--container, depending on the number of sales of that day,
+// where days with the most sales will appear green, regular days as yellow, and bad days as red.
+// @day, current day number of sales.
+// @highestDay, represents the highest number of sales in establisshed period.
+// Output: String representing a color in #000 format.
+function colorDay(day, highestDay) {
+    var red = "#ee6055";
+    var yellow = "#fff75e";
+    var green = "#aaf683";
+
+    switch (day) {
+        case day = 0:
+            return red;
+            break;
+        case day = highestDay:
+            return green;
+            break;
+        case day = (highestDay - 1):
+            return yellow;
+            break;
+        case day = (highestDay - 2):
+            return yellow;
+            break;
+        case day = (highestDay - 3):
+            return yellow;
+            break;
     }
 }
 
@@ -237,7 +285,7 @@ function displayMonthSummaryComponent(generalData, toggleId) {
 // general performance of a month
 function displayButton(date, final_date) {
 
-    const infoContainer = document.getElementById("periodInfo");
+    const infoContainer = document.getElementById("period--container");
 
     for (let i = 0; i < date.length - 1; i++) {
         const container = document.createElement('div');
@@ -369,52 +417,80 @@ function getData(auth, startingDate, finalDate) {
         });
 }
 
+//Allows validation on form submit, only allows
+// forms to submit if at least, there is a barcode
+// and a starting date, as if not final date included, 
+// api takes current date as final date.
+function validateForm() {
+    let searchBar = document.forms["myForm"]["searchBar"].value;
+    let startingDate = document.forms["myForm"]["startingDate"].value;
+    if (searchBar == "") {
+        alert("Ingresa un codigo de barras, porfavor.");
+        event.preventDefault();
+        return false;
+    } else if (startingDate == "") {
+        alert("Ingresa una fecha inicial, porfavor.");
+        event.preventDefault();
+        return false;
+    }
+    event.preventDefault();
+    return true;
+}
+
 //On windows load adds and event listener to a form button for sumbiting a
 // query to an API
 window.onload = function() {
     let myButton = document.getElementById("sendButton");
     myButton.addEventListener('click', () => {
-        //Managing auth credentials for API
-        var user = 'mrvapes';
-        var password = '?bW86hmTDC`)9w*('
-        var credentials = btoa(`${user}:${password}`)
-        var auth = { "Authorization": `Basic ${credentials}` };
 
-        var startingDate = document.getElementById("startingDate").value.replace(/-/g, '');
-        var startingDate2 = document.getElementById("startingDate").value;
-        var finalDate = document.getElementById("finalDate").value.replace(/-/g, '');
-        var finalDate2 = document.getElementById("finalDate").value;
-
-        //Creates a request for each day between the starting
-        // and the final date
-        var start = new Date(startingDate2);
-        var end = new Date(finalDate2);
-
-        //Performance whitin a given period of time
-        getData(auth, startingDate, finalDate);
-
-        //Creates the buttons to display the summary of
-        // performance of the month within the given
-        // period of time
-        var start = startingDate2
-        var end = finalDate2
-        var startYear = parseInt(start.substring(0, 4));
-        var endYear = parseInt(end.substring(0, 4));
-        var dates = [];
-
-        for (var i = startYear; i <= endYear; i++) {
-            var endMonth = i != endYear ? 11 : (parseInt(end.substring(5, 7)));
-            var startMon = i === startYear ? (parseInt(start.substring(5, 7)) - 1) : 0;
-            for (var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j + 1) {
-                var month = j + 1;
-                var day = '01';
-                var displayMonth = month < 10 ? '0' + month : month;
-                if (i == endYear && j == endMonth) {
-                    day = finalDate.substring(6, 8);
-                }
-                dates.push([i, displayMonth, day].join('-'));
+        if (validateForm()) {
+            const innerContainer = document.getElementById('period-data--container0');
+            if (innerContainer) {
+                document.getElementById('generalInfo--container').innerHTML = "";
+                document.getElementById('period--container').innerHTML = "";
             }
+            //Managing auth credentials for API
+            var user = 'mrvapes';
+            var password = '?bW86hmTDC`)9w*('
+            var credentials = btoa(`${user}:${password}`)
+            var auth = { "Authorization": `Basic ${credentials}` };
+
+            var startingDate = document.getElementById("startingDate").value.replace(/-/g, '');
+            var startingDate2 = document.getElementById("startingDate").value;
+            var finalDate = document.getElementById("finalDate").value.replace(/-/g, '');
+            var finalDate2 = document.getElementById("finalDate").value;
+
+            //Creates a request for each day between the starting
+            // and the final date
+            var start = new Date(startingDate2);
+            var end = new Date(finalDate2);
+
+            //Performance whitin a given period of time
+            getData(auth, startingDate, finalDate);
+
+            //Creates the buttons to display the summary of
+            // performance of the month within the given
+            // period of time
+            var start = startingDate2
+            var end = finalDate2
+            var startYear = parseInt(start.substring(0, 4));
+            var endYear = parseInt(end.substring(0, 4));
+            var dates = [];
+
+            for (var i = startYear; i <= endYear; i++) {
+                var endMonth = i != endYear ? 11 : (parseInt(end.substring(5, 7)));
+                var startMon = i === startYear ? (parseInt(start.substring(5, 7)) - 1) : 0;
+                for (var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j + 1) {
+                    var month = j + 1;
+                    var day = '01';
+                    var displayMonth = month < 10 ? '0' + month : month;
+                    if (i == endYear && j == endMonth) {
+                        day = finalDate.substring(6, 8);
+                    }
+                    dates.push([i, displayMonth, day].join('-'));
+                }
+            }
+            displayButton(dates, finalDate);
         }
-        displayButton(dates, finalDate);
     });
 }
