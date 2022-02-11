@@ -1,5 +1,5 @@
 #dataSheet--container {
-    min-width: 900px;
+    min-width: 80%;
 }
 
 #dataSheet {
@@ -29,7 +29,7 @@
 
 .period-data--container {
     width: fit-content;
-    flex-basis: 50%;
+    /* flex-basis: 50%; */
     background-color: #ffff;
 }
 
@@ -45,4 +45,13 @@
 
 #generalInfo--container h2 {
     margin-bottom: 0;
+}
+
+.calendar--container {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.calendar-days--container {
+    width: 50px;
 }

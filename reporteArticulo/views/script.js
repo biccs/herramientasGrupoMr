@@ -92,7 +92,7 @@ function displayMonthComponent(dailyData, toggleId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} vent`;
             dayContainer.append(day, sales);
             weekContainer.append(dayContainer);
             calendarContainer.append(weekContainer);
@@ -103,7 +103,7 @@ function displayMonthComponent(dailyData, toggleId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} vent`;
             dayContainer.append(day, sales);
             weekContainer.append(dayContainer);
             calendarContainer.append(weekContainer);
@@ -117,7 +117,7 @@ function displayMonthComponent(dailyData, toggleId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} vent`;
             dayContainer.append(day, sales);
             weekContainer2.append(dayContainer);
             calendarContainer.append(weekContainer2);
@@ -128,7 +128,7 @@ function displayMonthComponent(dailyData, toggleId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} vent`;
             dayContainer.append(day, sales);
             weekContainer2.append(dayContainer);
             calendarContainer.append(weekContainer2);
@@ -142,7 +142,7 @@ function displayMonthComponent(dailyData, toggleId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} vent`;
             dayContainer.append(day, sales);
             weekContainer3.append(dayContainer);
             calendarContainer.append(weekContainer3);
@@ -153,7 +153,7 @@ function displayMonthComponent(dailyData, toggleId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} vent`;
             dayContainer.append(day, sales);
             weekContainer3.append(dayContainer);
             calendarContainer.append(weekContainer3);
@@ -167,7 +167,7 @@ function displayMonthComponent(dailyData, toggleId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} vent`;
             dayContainer.append(day, sales);
             weekContainer4.append(dayContainer);
             calendarContainer.append(weekContainer4);
@@ -178,7 +178,7 @@ function displayMonthComponent(dailyData, toggleId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} vent`;
             dayContainer.append(day, sales);
             weekContainer4.append(dayContainer);
             calendarContainer.append(weekContainer4);
@@ -192,7 +192,7 @@ function displayMonthComponent(dailyData, toggleId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} vent`;
             dayContainer.append(day, sales);
             weekContainer5.append(dayContainer);
             calendarContainer.append(weekContainer5);
@@ -203,7 +203,7 @@ function displayMonthComponent(dailyData, toggleId) {
             const day = document.createElement("p");
             day.textContent = `${i + 1}`;
             const sales = document.createElement("p");
-            sales.textContent = ` ${dailyData[i].ventas_diarias} ventas`;
+            sales.textContent = ` ${dailyData[i].ventas_diarias} vent`;
             dayContainer.append(day, sales);
             weekContainer5.append(dayContainer);
             calendarContainer.append(weekContainer5);
