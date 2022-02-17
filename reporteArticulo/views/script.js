@@ -1,4 +1,4 @@
-const { attachment } = require("express/lib/response");
+// import { attachment } from "node_modules/";
 
 //Properly gives format for this use case, to a date as a string
 function manageDate(date) {
@@ -560,13 +560,7 @@ window.onload = function () {
       var user = "mrvapes";
       var password = "?bW86hmTDC`)9w*(";
       var credentials = btoa(`${user}:${password}`);
-      //   var auth = { Authorization: `Basic ${credentials}` };
-      //   var contentDisposition = {
-      //     'Content-Diposition':
-      //       'attachment; filename="filename.jpg"; filename*="filename.jpg',
-      //     'Content-Type': "application/octet-stream; charset=utf-8",
-      //     'Content-Length': "7193",
-      //   };
+
       var startingDate = document
         .getElementById("startingDate")
         .value.replace(/-/g, "");
@@ -582,39 +576,16 @@ window.onload = function () {
       fetch(url, {
         headers: {
           Authorization: `Basic ${credentials}`,
-        contentDisposition: attachment,
+          contentDisposition: "attachment",
           "Content-Type": "application/octet-stream; charset=utf-8",
           "Content-Length": "7193",
         },
       })
         .then((respuesta) => respuesta.blob())
-        .then((data) => {
-          console.log(typeof data);
-
-          //   //Creates the url for the file
-          //   //   const url = window.URL.createObjectURL(data);
-          //   let file = new Blob([data], {
-          //     type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          //   });
-
-          //   //creating an invisible element for triggering download
-          //   var element = document.createElement("a");
-          //   element.setAttribute("href", file);
-          //   element.setAttribute("download", "reporte.xlsx");
-
-          //   // Above code is equivalent to
-          //   // <a href="path of file" download="file name">
-
-          //   document.body.appendChild(element);
-
-          //   //onClick property
-          //   element.click();
-
-          //   document.body.removeChild(element);
-          // })
-          // .catch(function (err) {
-          //   // There was an error
-          //   console.warn("Something went wrong.", err);
+        .then((blob) => URL.createObjectURL(blob))
+        .then((url) => {
+          window.open(url, "_blank");
+          URL.revokeObjectURL(url);
         });
     }
   });
