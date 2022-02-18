@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+:root {
+  --white: #f5f0f0;
+  --red: #f0233d;
+  --darkred: #b01721;
+  --grey: #212122;
+  --black: #121214;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+}
+
+#section--blur {
+  filter: blur(3px);
+  width: 100%;
+  pointer-events: none;
+}
+
+form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: var(--darkred);
+  padding: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+header {
+  width: 100%;
+  height: 15vh;
+  background-color: var(--grey);
+}
+
+#section--container {
+  display: flex;
+  background-color: var(--white);
+  height: 70vh;
+}
+
+article {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 15vh;
+  width: 90%;
+  height: inherit;
+}
+
+.button--container {
+  width: 50%;
+  height: 100px;
+  display: flex;
+  box-shadow: rgba(88, 88, 97, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+button {
+  width: 100%;
+  height: inherit;
+}
+
+#span--container {
+  background-image: url("../assets/report-svgrepo-com.svg");
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+footer {
+  background-color: var(--white);
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer img {
+  width: 50px;
+  height: 50px;
+}
+
+#login-button {
+  width: fit-content;
+  font-size: 25px;
+  text-align: center;
+  box-shadow: 3px 4px 0px 0px #8a2a21;
+  background: linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+  background-color: #c62d1f;
+  border-radius: 18px;
+  border: 1px solid #d02718;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 17px;
+  padding: 7px 25px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #810e05;
+  padding-top: 10px;
+}
+
+label, input {
+  margin: 5px;
+}
