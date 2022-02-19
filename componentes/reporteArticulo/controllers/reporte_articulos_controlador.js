@@ -1,13 +1,23 @@
 const path = require("path");
-const allowed = require('../../inicio/views/script');
+const url = require('url');
 
+var allowed = require("../../inicio/views/script");
+
+//ALLOWS access to file if allowed is true
 module.exports = {
   home: (req, res) => {
-    if (allowed) {
+    //Creates the object that stores the request query parameters
+    const queryObject = url.parse(req.url, true).query;
+
+    //Check if validation variables are positive for redirecting
+    // to the proper page
+    if (req.allowed || queryObject.allow) {
       res.sendFile(path.join(__dirname, "../views/index.html"));
     } else {
-      alert('No tienes permiso para visitar esta pagina, necesitas iniciar sesion.');
-      window.location.replace("../../inicio/views/index.html");
+      console.log(req.allowed);
+      res.sendFile(
+        path.join(__dirname, "../../inicio/views/unauthorized.html")
+      );
     }
   },
 };

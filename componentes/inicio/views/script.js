@@ -1,5 +1,4 @@
 // TODO:  APPLY VALIDATION, IF NOT LOGGED IN NOT ALLOWED TO OPEN ANY FILE BUT INICIO FOLDER
-
 var allowed = false;
 
 //Helps with validating that all form data is filled
@@ -18,9 +17,11 @@ function validateForm(user, pass) {
   return true;
 }
 
-//Sets an event listener on the login button,
-// sends a request to the api and manages the response.
-window.onload = function () {
+try {
+  console.log(allowed);
+  //Sets an event listener on the login button,
+  // sends a request to the api and manages the response.
+
   //Managing auth credentials for API
   var user = "mrvapes";
   var password = "?bW86hmTDC`)9w*(";
@@ -42,11 +43,12 @@ window.onload = function () {
         .then((data) => {
           if (data) {
             allowed = true;
-            const blur = document.getElementById('section--blur');
-            const form = document.getElementById('form--container');
-            form.style.display = 'none';
-            blur.style.filter = 'blur(0px)';
-            blur.style.pointerEvents = 'all';
+            const blur = document.getElementById("section--blur");
+            const form = document.getElementById("form--container");
+            form.style.display = "none";
+            blur.style.filter = "blur(0px)";
+            blur.style.pointerEvents = "all";
+            console.log(allowed);
           } else {
             alert("Datos incorrectos, intente denuevo.");
           }
@@ -57,8 +59,8 @@ window.onload = function () {
         });
     }
   });
-};
-
-export function allow() {
-  return allowed;
+} catch (e) {
+  console.log(e.message);
 }
+
+module.exports = allowed;
