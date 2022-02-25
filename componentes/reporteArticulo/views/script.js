@@ -65,10 +65,10 @@ function generalDataModel(data, startingDate, finalDate) {
   stock.textContent = data.inventario + " en existencia";
   const dailySales = document.createElement("p");
   dailySales.textContent = data.ventas_diarias + " ventas diarias";
-  const daysLeft = document.createElement("p");
-  daysLeft.textContent = data.dias_aproximados + " dias restantes";
   const totalSales = document.createElement("p");
   totalSales.textContent = data.ventas_totales + " ventas totales";
+  const daysLeft = document.createElement("p");
+  daysLeft.textContent = data.dias_aproximados + " dias restantes";
 
   infoContainer.append(
     title,
@@ -450,14 +450,16 @@ function displayButton(date, final_date) {
 function getData(auth, startingDate, finalDate) {
   //Generates the url for the API query
   //Name or Code bar Input
-  var searchData = `"${document.getElementById("searchBar").value}"`;
+  var searchData = `'${document.getElementById("searchBar").value}'`;
   const url = `http://127.0.0.1:8000/matriz/reporte/articulos/?clave=${searchData}&fecha_inicial=${startingDate}&fecha_final=${finalDate}`;
+  console.log(url);
   //Prevents form from reloading page on submit
   event.preventDefault();
   //Sending Fetch Request (GET)
   fetch(url, { headers: auth })
     .then((respuesta) => respuesta.json())
     .then((data) => {
+      console.log(data);
       generalDataModel(data, startingDate, finalDate);
     })
     .catch(function (err) {
