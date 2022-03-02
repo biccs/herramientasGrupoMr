@@ -490,6 +490,7 @@ function validateForm() {
 //On windows load adds and event listener to a form button for sumbiting a
 // query to an API
 window.onload = function () {
+  window.history.pushState("", "", '/reporte_articulos');
   let myButton = document.getElementById("sendButton");
   let excelButton = document.getElementById("excelButton");
 

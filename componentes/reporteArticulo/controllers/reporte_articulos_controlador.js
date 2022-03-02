@@ -13,8 +13,9 @@ module.exports = {
     // to the proper page
     if (req.allowed || queryObject.allow) {
       res.sendFile(path.join(__dirname, "../views/index.html"));
+      // res.url = 
+      // res.redirect(301, '/reporte_articulos')
     } else {
-      console.log(req.allowed);
       res.sendFile(
         path.join(__dirname, "../../inicio/views/unauthorized.html")
       );
