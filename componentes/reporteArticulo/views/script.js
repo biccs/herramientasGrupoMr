@@ -459,7 +459,6 @@ function getData(auth, startingDate, finalDate) {
   fetch(url, { headers: auth })
     .then((respuesta) => respuesta.json())
     .then((data) => {
-      console.log(data);
       generalDataModel(data, startingDate, finalDate);
     })
     .catch(function (err) {
