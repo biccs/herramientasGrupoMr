@@ -35,7 +35,7 @@ try {
     const pass = document.getElementById("pass").value;
 
     if (validateForm(user, pass)) {
-      const url = `http://127.0.0.1:8000/herramientasgrupomr/acceso/?usuario=${user}&clave=${pass}`;
+      const url = `http://20.115.109.36:8080/herramientasgrupomr/acceso/?usuario=${user}&clave=${pass}`;
       event.preventDefault();
 
       fetch(url, { headers: auth })
