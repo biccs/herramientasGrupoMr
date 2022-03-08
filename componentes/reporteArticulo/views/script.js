@@ -364,7 +364,7 @@ function displayButton(date, final_date) {
         } else {
           var finalDate = date[i + 1].replace(/-/g, "");
         }
-        const url = `http://127.0.0.1:8000/matriz/reporte/articulos/?clave=${searchData}&fecha_inicial=${startingDate}&fecha_final=${finalDate}`;
+        const url = `http://20.115.109.36:8080/matriz/reporte/articulos/?clave=${searchData}&fecha_inicial=${startingDate}&fecha_final=${finalDate}`;
 
         //Prevents form from reloading page on submit
         event.preventDefault();
@@ -394,7 +394,7 @@ function displayButton(date, final_date) {
             } else {
               var sd = `${startingDate.substring(0, 6)}${i}`;
             }
-            const url = `http://127.0.0.1:8000/matriz/reporte/ventas_diarias/?clave=${searchData}&fecha=${sd}`;
+            const url = `http://20.115.109.36:8080/matriz/reporte/ventas_diarias/?clave=${searchData}&fecha=${sd}`;
             fetch(url, { headers: auth })
               .then((respuesta) => respuesta.json())
               .then((data) => {
@@ -414,7 +414,7 @@ function displayButton(date, final_date) {
             } else {
               var sd = `${startingDate.substring(0, 6)}${i}`;
             }
-            const url = `http://127.0.0.1:8000/matriz/reporte/ventas_diarias/?clave=${searchData}&fecha=${sd}`;
+            const url = `http://20.115.109.36:8080/matriz/reporte/ventas_diarias/?clave=${searchData}&fecha=${sd}`;
             fetch(url, { headers: auth })
               .then((respuesta) => respuesta.json())
               .then((data) => {
@@ -451,7 +451,7 @@ function getData(auth, startingDate, finalDate) {
   //Generates the url for the API query
   //Name or Code bar Input
   var searchData = `'${document.getElementById("searchBar").value}'`;
-  const url = `http://127.0.0.1:8000/matriz/reporte/articulos/?clave=${searchData}&fecha_inicial=${startingDate}&fecha_final=${finalDate}`;
+  const url = `http://20.115.109.36:8080/matriz/reporte/articulos/?clave=${searchData}&fecha_inicial=${startingDate}&fecha_final=${finalDate}`;
   console.log(url);
   //Prevents form from reloading page on submit
   event.preventDefault();
@@ -571,7 +571,7 @@ window.onload = function () {
         .value.replace(/-/g, "");
       var searchData = document.getElementById("searchBar").value;
 
-      const url = `http://127.0.0.1:8000/matriz/reporte/csv/?clave=${searchData}&fecha_inicial=${startingDate}&fecha_final=${finalDate}`;
+      const url = `http://20.115.109.36:8080/matriz/reporte/csv/?clave=${searchData}&fecha_inicial=${startingDate}&fecha_final=${finalDate}`;
       //Prevents form from reloading page on submit
       event.preventDefault();
       //Sending Fetch Request (GET)
